@@ -29,8 +29,8 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-    background-color: var(--md-sys-color-background);
-    color: var(--md-sys-color-on-background);
+    background-color: var(--base);
+    color: var(--text);
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -102,8 +102,8 @@ img {
 code {
 	padding: 2px 5px;
     border-radius: 2px;
-	background-color: var(--md-sys-color-surface-variant);
-    color: var(--md-sys-color-on-surface-variant);
+	background-color: var(--surface0);
+    color: var(--text);
     font-family: "JetBrains Mono", monospace;
 }
 pre {

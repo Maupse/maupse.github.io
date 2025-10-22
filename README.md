@@ -1,4 +1,4 @@
 # maupse.github.io
-My portfolio website!
+My portfolio / blog website!
 
 Under construction...

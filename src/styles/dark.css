@@ -16,4 +16,7 @@ body[data-theme="dark"] {
     --overlay2: #9399b2;
     --overlay1: #7f849c;
     --overlay0: #6c7086;
+
+    --mauve: #cba6f7;
+    --peach: #fab387;
 }

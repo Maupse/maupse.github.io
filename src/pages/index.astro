@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Code } from "astro:components";
+const js_code = `const n = 5;
+for (let i = 0; i < n; i++) {
+    solve();
+}`;
 ---
 <BaseLayout>
     <main>
@@ -33,5 +38,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
             by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
         </p>
+        <Code code={js_code} lang="js"/>
+        <pre><code>{js_code}</code></pre>
     </main>
 </BaseLayout>

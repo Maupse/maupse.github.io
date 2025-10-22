@@ -106,10 +106,22 @@ code {
     color: var(--text);
     font-family: "JetBrains Mono", monospace;
 }
+
+.astro-code {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+}
+
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
 }
+
+pre:has(> code) {
+    background-color: var(--crust);
+    color: var(--text);
+}
+
 pre > code {
 	all: unset;
 }

@@ -3,34 +3,52 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { DEFAULT_BLOG_IMAGE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection(
+    'blog',
+    ({ data }) => import.meta.env.DEV || !data.draft,
+))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.map((post) => ({
+		...post,
+		image: post.data.heroImage ?? DEFAULT_BLOG_IMAGE,
+		imageAlt:
+			post.data.heroImageAlt ??
+			(post.data.heroImage ? `Cover image for ${post.data.title}` : ''),
+	}));
 ---
 
-<BaseLayout>
-    <main>
-        <section>
-            <ul>
-                {
-                    posts.map((post) => (
-                        <li>
-                            <a href={`/blog/${post.id}/`}>
-                                {post.data.heroImage && (
-                                    <Image width={720} height={360} src={post.data.heroImage} alt="" />
-                                )}
-                                <h4 class="title">{post.data.title}</h4>
-                                <p class="date">
-                                    <FormattedDate date={post.data.pubDate} />
-                                </p>
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
-        </section>
-    </main>
+<BaseLayout
+	title="Blog"
+	description="Posts on mathematics, theoretical computer science, algorithms, and problem solving."
+>
+	<main>
+		<section>
+			<ul>
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<Image
+									width={720}
+									height={360}
+									src={post.image}
+									alt={post.imageAlt}
+								/>
+
+								<h4 class="title">{post.data.title}</h4>
+
+								<p class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+	</main>
 </BaseLayout>
 
 

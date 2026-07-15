@@ -2,19 +2,27 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DEFAULT_BLOG_IMAGE } from '../consts'
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { 
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    heroImage = DEFAULT_BLOG_IMAGE,
+    heroImageAlt=`Default cover image for ${title}`
+} = Astro.props;
 ---
 
 
-<BaseLayout>
+<BaseLayout title={title} description={description} image={heroImage} type='article'>
     <main>
         <article>
             <div class="hero-image">
-                {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+                {<Image width={1020} height={510} src={heroImage} alt={heroImageAlt} />}
             </div>
             <div class="prose">
                 <div class="title">

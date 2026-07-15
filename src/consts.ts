@@ -1,5 +1,9 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+import defaultSocialImage from './assets/blog-placeholder-about.jpg';
+import defaultBlogImage from './assets/blog-placeholder-about.jpg';
 
 export const SITE_TITLE = 'Maupse';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_DESCRIPTION =
+	'Personal notes and essays on mathematics, theoretical computer science, algorithms, and problem solving.';
+export const SITE_IMAGE = defaultSocialImage;
+
+export const DEFAULT_BLOG_IMAGE = defaultBlogImage;

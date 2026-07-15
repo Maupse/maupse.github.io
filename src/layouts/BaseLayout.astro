@@ -1,17 +1,33 @@
 ---
+import type { ImageMetadata } from 'astro';
 import "../styles/global.css";
 import "../styles/light.css";
 import "../styles/dark.css";
+import 'katex/dist/katex.min.css'; // For latex
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_IMAGE } from '../consts';
+
+interface Props {
+	title?: string;
+    description?: string;
+    image?: ImageMetadata;
+    type?: 'website' | 'article';
+}
+
+const {
+	title = SITE_TITLE,
+    description = SITE_DESCRIPTION,
+    image = SITE_IMAGE,
+    type = 'website'
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <BaseHead title={title} description={description} image={image} type={type} />
 	</head>
     <body data-theme="dark">
 		<Header />
